@@ -1,0 +1,66 @@
+import RPi.GPIO as GPIO
+
+#import flask and template folder which contains html
+from flask import Flask, render_template, request  
+app = Flask(__name__)
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+#defining GPIO pins
+in1 = 13
+in2 = 19
+in3 = 26
+
+in1Sts = 0
+in2Sts = 0
+in3Sts = 0
+
+
+#declaring gpio pins as output
+GPIO.setup(in1, GPIO.OUT)
+GPIO.setup(in2, GPIO.OUT)
+GPIO.setup(in3, GPIO.OUT)
+
+
+#initially setting gpio pin low
+GPIO.output(in1, GPIO.LOW)
+GPIO.output(in2, GPIO.LOW)
+GPIO.output(in3, GPIO.LOW)
+
+
+#pyhton loops
+@app.route('/')
+def index():
+    in1Sts = GPIO.input(in1)
+    in2Sts = GPIO.input(in2)
+    in3Sts = GPIO.input(in3)
+
+
+    templateData = { 
+    'in1' : in1Sts,
+    'in2' : in2Sts,
+    'in3' : in3Sts,}
+
+    return render_template('index.html', **templateData)
+@app.route('/<deviceName>/<action>')
+def do(deviceName, action):
+    if deviceName == "in1":
+        relay = in1
+    if deviceName == "in2":
+        relay = in2
+    if deviceName == "in3":
+        relay = in3
+    if action == "on":
+        GPIO.output(relay, GPIO.HIGH)
+    if action == "off":
+        GPIO.output(relay, GPIO.LOW)
+    
+    in1Sts = GPIO.input(in1)
+    in2Sts = GPIO.input(in2)
+    in3Sts = GPIO.input(in3)
+    templateData = { 'in1' : in1Sts,
+    'in2' : in2Sts,
+    'in3' : in3Sts,}
+    return render_template('index.html', **templateData)
+if __name__ == "__main__":
+    app.run(host = '192.168.1.146', debug=True)

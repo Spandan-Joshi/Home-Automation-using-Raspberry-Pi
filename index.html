@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="3">
+    <title>RPi LOCAL SERVER</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="Shortcut Icon" href="icon_the_circles.png">
+<style>
+    @media only screen and (max-width: 500px) {
+    .ms-body {max-height: auto; height: auto;}
+    .containter {max-width: 100%; float: left;}
+    h1 {height: auto; font-size: x-large; text-align:left!important; float:left!important; padding: 2px 20px 2px 20px;}
+    h2 {font-size: medium;}
+    h4 {font-size: small;}
+    a {font-size: x-small;}
+    .status {margin-top: 12%; max-width: 40%;}
+    .status-text {font-size: small;}
+    .relay-control {margin-top: 1%; max-width: 90%;}
+    .span {padding: 0%;} 
+    .camera {max-width: 90%; font-size: small;}
+    }
+    .containter {
+    width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: sans-serif; }
+    .ms-body {background-color: rgb(216, 216, 216);}
+    .span {padding: 1%;}
+    .camera {background-color: rgb(173, 174, 255);}
+</style>
+</head>
+<body>
+    <body class="ms-body">
+        <div class="containter w3-container w3-card-4 w3-white">
+        
+    <h1 class="w3-red w3-center">RPi Home Automation</h1>
+<!-- LIVE STATUS BLOCK  -->
+        <div class="w3-padding-small p w3-border w3-card status">
+        <h2 class="w3-text-red w3-center">Status Live</h2>
+        <h4 class="w3-center"> RELAY IN-1 --> <span class="w3-text-red status-text"><strong>{{in1}}</strong></span></h4>
+        <h4 class="w3-center"> RELAY IN-2 --> <span class="w3-text-red status-text"><strong>{{in2}}</strong></span></h4>
+        <h4 class="w3-center"> RELAY IN-3 --> <span class="w3-text-red status-text"><strong>{{in3}}</strong></span></h4>
+        </div>
+
+<!-- RELAY CONTROL BLOCK -->
+        <div class="w3-pale-red w3-card w3-border w3-padding-small relay-control" id="relay-control">
+	    
+	    <h2 class="w3-center">Relay Control</h2>
+            
+            <h4 class="w3-center"> RELAY IN-1 >>>
+                <span class="span"></span>
+                <a href ="/in1/on" class="w3-button w3-round-xxlarge w3-amber w3-hover-red">TURN OFF</a> 
+                <span class="span"></span>
+                <a href="/in1/off" class = "w3-button w3-round-xxlarge w3-amber w3-hover-green">TURN ON</a>
+            </h4>
+
+            <h4 class="w3-center"> RELAY IN-2  >>> 
+                <span class="span"></span>
+                <a href="/in2/on" class="w3-button w3-round-xxlarge w3-amber w3-hover-red">TURN OFF</a>
+                <span class="span"></span>
+                <a href="/in2/off" class="w3-button w3-round-xxlarge w3-amber w3-hover-green">TURN ON</a>
+            </h4>
+            
+            <h4 class="w3-center">RELAY IN-3 >>>
+                <span class="span"></span>
+                <a href="/in3/on" class="w3-button w3-round-xxlarge w3-amber w3-hover-red">TURN OFF</a>
+                <span class="span"></span>
+                <a href="/in3/off" class="w3-button w3-round-xxlarge w3-amber w3-hover-green">TURN ON</a>
+            </h4>
+        </div>
+
+    <br>
+</div> 
+</body>
+</html>
